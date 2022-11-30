@@ -13,6 +13,22 @@ function App() {
     };
     // document.getElementById("field").value="" ;
    
+    const handleSelect =()=>{
+      let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      console.log(checkboxes);
+      for(let checkbox of checkboxes){
+         if(checkbox.checked===false){
+          checkbox.checked = true;
+          document.getElementById("allSelect").checked= true;
+         }
+         else{
+          checkbox.checked = false;
+          document.getElementById("allSelect").checked= false;
+         }
+         
+      }
+      
+    }
   return (
     <div className="App">
  <form>
@@ -25,7 +41,7 @@ function App() {
 
       <div>
   
-      {divCount>0 &&<p><input type="checkbox" name="" id="" /> All checkbox</p>}
+      {divCount>0 &&<p><input name="allSelect" type="checkbox" id="allSelect" onChange={handleSelect}/> All checkbox</p>}
       
           {Array(divCount)
             .fill(0)
