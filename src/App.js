@@ -4,7 +4,11 @@ import { useState } from 'react';
 function App() {
     //state
     const [divCount, setDivCount] = useState(0);
-    const [check, setCheck] = useState(false);
+    const [checks, setChecks] = useState([]);
+ 
+
+   
+
 
     const appendChilddiv = (e) => {
       e.preventDefault()
@@ -13,6 +17,15 @@ function App() {
       setDivCount(parseInt(v));
     };
     // document.getElementById("field").value="" ;
+
+    let t=0;
+    checks.map(function sum(element){
+        let i = document.getElementById(`${element}`).value;
+        t=t+parseFloat(i);
+       console.log("tttt", t);
+       document.getElementById("s").innerHTML=t;
+      return t;
+  });
    
     const handleSelect =()=>{
       let checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -23,6 +36,7 @@ function App() {
           checkbox.checked = true;
           document.getElementById("allSelect").checked= true;
           document.getElementById("calculate").style.display="block";
+          document.getElementById("singleCalculate").style.display="none";
          }
          else{
           checkbox.checked = false;
@@ -40,6 +54,14 @@ function App() {
     }
 
    
+   const handleCheck =(id)=>{
+      let position = id+1;
+      let allCheck = [...checks, position];
+       setChecks(allCheck);
+      document.getElementById("singleCalculate").style.display="block";
+   }
+
+   checks.sort((a, b) => a-b);
   return (
     <div className="App">
  <form>
@@ -52,17 +74,21 @@ function App() {
 
       <div>
   
-      {divCount>0 &&<p><input name="allSelect" type="checkbox" id="allSelect" onChange={handleSelect}/> All checkbox</p>}
+      {divCount>0 &&<p><input name="allSelect" type="checkbox" id="allSelect" onChange={handleSelect}/> All check</p>}
       
           {Array(divCount)
             .fill(0)
             .map((x, id) => (
               <div key={id}>
-                <input type="checkbox" name="" id="" />
-                <input type="number" name="number" className="f"/>
+                <input onClick={()=>handleCheck(id)} type="checkbox" name="" id="singleCheck" />
+                <input type="number" name="number" id={id+1}/>
               </div>
             ))}
+
   <p id="calculate">Selected all {divCount} items and Total number is <span id="total"></span></p>
+  <p id="singleCalculate">selected {checks.length} Items, There position is
+   { checks.map((p, _id )=> <span key={_id}>{p},</span>)}
+   and Total Number is <span id="s"></span></p>
       </div>
     </div>
   );
