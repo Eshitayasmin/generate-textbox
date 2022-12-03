@@ -3,7 +3,25 @@
   text-align: center;
 
 }
-
+.title-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.title{
+  color:sandybrown;
+  font-size: 31px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left: 8px;
+  font-weight: 600;
+  word-spacing: 5px;
+  letter-spacing: 1.25px;
+}
+.t-image{
+  width: 45px;
+  margin-top: 5px;
+}
 .numOfTextBoxField{
   width: 250px;
   padding: 7px;
