@@ -1,11 +1,11 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   //state
   const [divCount, setDivCount] = useState(0);
   const [checks, setChecks] = useState([]);
-  const [check, setCheck] = useState(false);
+  const [number, setNumber] = useState(0);
 
 
   const appendChildDiv = (e) => {
@@ -17,14 +17,15 @@ function App() {
   };
 
   let totalNumber = 0;
+
+
  
   checks.map(function (element) {
-
     let value = document.getElementById(`${element}`).value;
     totalNumber = totalNumber + parseFloat(value);
     console.log(checks.length);
-    document.getElementById("s").innerHTML = totalNumber;
-    
+    console.log(checks);
+    document.getElementById("s").innerHTML = totalNumber;   
 return totalNumber;
   });
 
@@ -33,6 +34,7 @@ return totalNumber;
     let checked = e.target.checked;
     let checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let inputNumbers = document.querySelectorAll('input[type="number"]');
+    setChecks([]);
 
     for (let checkbox of checkboxes) {
      
@@ -66,9 +68,10 @@ return totalNumber;
 
 
   const handleCheck = (e, id) => {
+   
     const checked=e.target.checked;
     let position = id + 1;
-   
+
   if(checked){
     if (!checks.includes(position)) {
       let allCheck = [...checks, position];
@@ -86,7 +89,9 @@ else{
 
   }
 
-
+  if(checks.length===0){
+    document.getElementById("singleCalculate").style.display = "none";
+  }
   // sort all checked item
   checks.sort((a, b) => a - b);
 
@@ -159,7 +164,7 @@ else{
               checks.map((p, _id) => (
                 <span key={_id} className="count"> {_id !== 0 && (_id === checks.length - 1 ? " and" : ",")} {p} </span>
               ))
-            } and Total Number is <span id="s" className='count'>0</span>
+            } and Total Number is <span id="s" className='count'></span>
           </p>
         </div>
       </div>
