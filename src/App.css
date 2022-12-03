@@ -1,10 +1,81 @@
 .App {
+  margin-top: 50px;
   text-align: center;
+
 }
 
-#calculate{
-  display: none;
+.numOfTextBoxField{
+  width: 250px;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-right: 15px;
+  text-align: center;
+  font-size: 18px;
 }
-#singleCalculate{
+.numOfTextBoxField:focus{
+  outline: none;
+  border: 1px solid peru;
+}
+.add-textbox-button{
+  background-color:darkslategray;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+}
+.add-textbox-button:hover{
+  background-color:peru;
+}
+.all-check-div{
+  margin: 35px 5px 25px;
+}
+.all-check{
+  background-color: lightgreen;
+  padding: 8px 80px;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 17px;
+  
+
+}
+
+.number-field{
+  padding: 7px 25px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 15px;
+  text-align: center;
+}
+.single-row{
+  margin: 15px 5px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+input[type="checkbox"] {
+  color: currentColor;
+  width: 1.4em;
+  height: 1.4em;
+  border: 0.15em solid currentColor;
+  border-radius: 1px;
+  margin-right: 10px;
+}
+.count{
+  font-size: 19px;
+  font-weight: 700;
+  color: cadetblue;
+
+  
+}
+
+.result{
   display: none;
+  font-size: 17px;
+  font-weight: 500;
+  font-family:Arial, Helvetica, sans-serif;
+  word-spacing: 3px;
+  letter-spacing: 0.8px;
 }
