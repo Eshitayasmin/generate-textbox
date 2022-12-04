@@ -5,8 +5,12 @@ function App() {
   //state
   const [divCount, setDivCount] = useState(0);
   const [checks, setChecks] = useState([]);
-  const [number, setNumber] = useState(0);
 
+  useEffect(()=>{
+    if(checks.length===0){
+      document.getElementById("singleCalculate").style.display = "none"; 
+    }
+  }, [checks]);
 
   const appendChildDiv = (e) => {
     e.preventDefault();
@@ -89,9 +93,6 @@ else{
 
   }
 
-  if(checks.length===0){
-    document.getElementById("singleCalculate").style.display = "none";
-  }
   // sort all checked item
   checks.sort((a, b) => a - b);
 
