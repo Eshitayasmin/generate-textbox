@@ -6,6 +6,10 @@ function App() {
   const [divCount, setDivCount] = useState(0);
   const [checks, setChecks] = useState([]);
 
+  let calculate = document.getElementById("calculate");
+  let singleCalculate = document.getElementById("singleCalculate");
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
   useEffect(()=>{
     if(checks.length===0){
       document.getElementById("singleCalculate").style.display = "none"; 
@@ -14,26 +18,33 @@ function App() {
 
   const appendChildDiv = (e) => {
     e.preventDefault();
-    let div = document.getElementById("field").value;
 
-    setDivCount(parseInt(div));
-
+   let div = parseInt(document.getElementById("field").value);
+   
+   if(div<divCount){
+    for (let checkbox of checkboxes) {
+      checkbox.checked =false;
+      setChecks([]);
+    }
+   }
+   
+    setDivCount(div);
   };
 
   let totalNumber = 0;
 
-
- 
   checks.map(function (element) {
     let value = document.getElementById(`${element}`).value;
+    if(value ===""){
+      value =0;
+    }
+    console.log("vvvv", isNaN(value));
     totalNumber = totalNumber + parseFloat(value);
-    console.log(checks.length);
-    console.log(checks);
     document.getElementById("s").innerHTML = totalNumber;   
 return totalNumber;
   });
 
-
+//handle all select
   const handleSelect = (e) => {
     let checked = e.target.checked;
     let checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -41,36 +52,32 @@ return totalNumber;
     setChecks([]);
 
     for (let checkbox of checkboxes) {
-     
       if (checked) {
         checkbox.checked = true;
-        document.getElementById("allSelect").checked = true;
-        document.getElementById("calculate").style.display = "block";
-        document.getElementById("singleCalculate").style.display = "none";
+        calculate.style.display = "block";
+        singleCalculate.style.display = "none";
       }
       else {
         checkbox.checked = false;
-        document.getElementById("allSelect").checked = false;
-        document.getElementById("calculate").style.display = "none";
+        calculate.style.display = "none";
        
       }
     }
     let total = 0;
     for (let number of inputNumbers) {
-      total = total + parseFloat(number.value);
-    
-
-      if (!isNaN(total) === true) {
-        document.getElementById("total").innerHTML = total;
+      let value =number.value;
+      if(value ===""){
+        value =0;
       }
-      else {
-        document.getElementById("total").innerHTML = 0;
-      }
+      total = total + parseFloat(value);
+   
+        document.getElementById("total").innerHTML = total;  
+      
     }
 
   }
 
-
+//handle single select
   const handleCheck = (e, id) => {
    
     const checked=e.target.checked;
@@ -82,9 +89,8 @@ return totalNumber;
       setChecks(allCheck);
     }
 
-    document.getElementById("allSelect").checked = false;
-    document.getElementById("calculate").style.display = "none";
-    document.getElementById("singleCalculate").style.display = "block";
+    calculate.style.display = "none";
+    singleCalculate.style.display = "block";
   }
 else{
   const remaining = checks.filter((f) => (f !== position));
@@ -149,7 +155,6 @@ else{
                 <input
                   className='number-field'
                   type="number"
-                  name="number"
                   id={id + 1}
                   placeholder='Enter a valid number'
                 />
