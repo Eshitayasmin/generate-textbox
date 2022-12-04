@@ -143,26 +143,17 @@ input[type="checkbox"] {
   }
   .all-check{
     padding: 8px 68px;
-  
   }
   
   .number-field{
     width: 205px;
     padding: 7px 1px;
   }
-
-  .count{
-    font-size: 19px;
-    font-weight: 700;
-    color: cadetblue; 
-  }
   
   .result{
-    word-spacing: 3px;
-    letter-spacing: 0.8px;
-    box-shadow: 1px 1px 12px gray;
+    word-spacing: 2px;
+    letter-spacing: 0.7px;
     padding: 10px;
     margin: 30px 15px;
-    border-radius: 10px;
   }
 }
